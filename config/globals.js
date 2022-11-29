@@ -6,5 +6,5 @@ const configurations = {
     callbackUrl: 'http://localhost:3001/github/callback',
   },
 };
-
+//exports
 module.exports = configurations;
