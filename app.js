@@ -31,8 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configure passport module https://www.npmjs.com/package/express-session
-// secret is a salt value used for hashing
+
 // save forces the session to be saved back to the session store 
 // even if it's never modified during the request
 app.use(session({
@@ -49,15 +48,13 @@ app.use(passport.session());
 const User = require('./models/user');
 passport.use(User.createStrategy());
 
-// Configure passport-github2 with the API keys and user model
-// We need to handle two scenarios: new user, or returning user
+
 passport.use(new githubStrategy({
   clientID: config.github.clientId,
   clientSecret: config.github.clientSecret,
   callbackURL: config.github.callbackUrl
 },
-  // create async callback function
-  // profile is github profile
+  
   async (accessToken, refreshToken, profile, done) => {
     // search user by ID
     const user = await User.findOne({ oauthId: profile.id });
