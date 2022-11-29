@@ -48,10 +48,7 @@ router.get('/add', IsLoggedIn, (req, res, next) => {
 
 // Add POST handler
 router.post('/add', IsLoggedIn, (req, res, next) => {
-  // use the project module to save data to DB
-  // call create method of the model
-  // and map the fields with data from the request
-  // callback function will return an error if any or a newProject object
+  
   Project.create(
     {
       name: req.body.name,
@@ -109,9 +106,7 @@ router.get('/edit/:_id', IsLoggedIn, (req, res, next) => {
 
 // POST handler for Edit operations
 router.post('/edit/:_id', IsLoggedIn, (req, res, next) => {
-  // find project based on ID
-  // try updating with form values
-  // redirect to /Projects
+  
   Project.findOneAndUpdate(
     { _id: req.params._id },
     {
