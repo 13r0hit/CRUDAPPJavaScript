@@ -45,7 +45,6 @@ router.post('/add', IsLoggedIn, (req, res, next) => {
   );
 });
 
-// GET handler for Delete operations
 // :_id is a placeholder for naming whatever is after the / in the path
 router.get('/delete/:_id', IsLoggedIn, (req, res, next) => {
   // call remove method and pass id as a json object
@@ -60,9 +59,7 @@ router.get('/delete/:_id', IsLoggedIn, (req, res, next) => {
 
 // GET handler for Edit operations
 router.get('/edit/:_id', IsLoggedIn, (req, res, next) => {
-  // Find the Project by ID
-  // Find available courses
-  // Pass them to the view
+ 
   Course.findById(req.params._id, (err, project) => {
     if (err) {
       console.log(err);
@@ -85,9 +82,7 @@ router.get('/edit/:_id', IsLoggedIn, (req, res, next) => {
 
 // POST handler for Edit operations
 router.post('/edit/:_id', IsLoggedIn, (req, res, next) => {
-  // find project based on ID
-  // try updating with form values
-  // redirect to /Projects
+  
   Course.findOneAndUpdate(
     { _id: req.params._id },
     {
