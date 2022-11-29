@@ -1,0 +1,29 @@
+<h1>
+  {{title}}
+</h1>
+<form method="POST" style="background-color: #fff;">
+  <fieldset>
+    <label for="name">
+      Task Name:
+    </label>
+    <input name="name" id="name" />
+  </fieldset>
+   <fieldset>
+    <label for="Status">
+      Status: 
+    </label>
+    <select name="Status" id="Status">
+      {{!-- Hardcode values as these won't change --}}
+      {{!-- <option>TO DO</option>
+      <option>IN PROGRESS</option>
+      <option>DONE</option> --}}
+      {{!-- Use helper instead --}}
+      {{createOption 'Pending' ../course.Status}}
+      {{createOption 'Complete' ../course.Status}}
+      {{createOption 'In-Progress' ../course.Status}}
+    </select>
+  </fieldset>
+  <button class="offset-3 btn btn-primary">
+    Save
+  </button>
+</form>

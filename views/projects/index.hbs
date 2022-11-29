@@ -1,0 +1,45 @@
+<h1>
+  {{title}}
+</h1>
+{{#if user}}
+{{!-- Add links to CRUD operations --}}
+<a href="/projects/add" style="background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius:6px">Add a new Work</a>
+{{/if}}
+
+{{!-- To Show data --}}
+<table class="table table-light table-striped table-hover" style=" margin-top:2rem">
+  <thead>
+    <th>TaskName</th>
+ 
+    <th>DeadLine</th>
+    <th>Description</th>
+    <th>Priority</th>
+    <th></th>
+  </thead>
+  {{#each dataset}}
+  <tr>
+    <td>{{this.course}}</td>
+ 
+    <td>{{toShortDate this.dueDate}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.status}}</td>
+
+    {{!-- When inside of a loop, you need to navigate out of it using '../' --}}
+    {{#if ../user}}
+        <td><a href="/projects/edit/{{this._id}}" 
+          class="btn btn-primary">Edit</a>
+            <a href="/projects/delete/{{this._id}}" 
+          class="btn btn-danger"
+            onclick="return confirmDeletion();">Delete</a></td>
+    {{/if}}
+  </tr>
+  {{/each}}
+</table>
